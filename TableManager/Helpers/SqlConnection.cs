@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TableManager.Interfaces
+namespace TableManager.Helpers
 {
-    public interface IBusinessTable
+    internal class SqlConnection
     {
-        bool GetTableSchema();
     }
 }

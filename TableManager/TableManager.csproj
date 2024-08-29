@@ -42,9 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BusinessTable.cs" />
+    <Compile Include="Data\DataTable.cs" />
+    <Compile Include="Entity\ColumnTableSchema.cs" />
+    <Compile Include="Entity\ColumnType.cs" />
+    <Compile Include="Entity\ColumnAttribute.cs" />
+    <Compile Include="Entity\TableSchema.cs" />
+    <Compile Include="Globals\BasicTableFields.cs" />
+    <Compile Include="Globals\Global.cs" />
+    <Compile Include="Helpers\SqlConnection.cs" />
+    <Compile Include="Helpers\SqlHelper.cs" />
     <Compile Include="Interfaces\IBusinessTable.cs" />
     <Compile Include="Interfaces\IDataTable.cs" />
     <Compile Include="Interfaces\IEntityTable.cs" />
+    <Compile Include="Interfaces\ITableSchemaExecutor.cs" />
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -54,11 +65,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\" />
-    <Folder Include="Data\" />
-    <Folder Include="Entity\" />
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

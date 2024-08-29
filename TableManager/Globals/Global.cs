@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TableManager.Interfaces
+namespace TableManager.Globals
 {
-    public interface IBusinessTable
+    internal class Global
     {
-        bool GetTableSchema();
     }
 }
