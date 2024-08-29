@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IBusinessTable.cs" />
     <Compile Include="Interfaces\IDataTable.cs" />
     <Compile Include="Interfaces\IEntityTable.cs" />
+    <Compile Include="Interfaces\ITableSchema.cs" />
     <Compile Include="Interfaces\ITableSchemaExecutor.cs" />
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
