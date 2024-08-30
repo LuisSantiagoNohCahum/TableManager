@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TableManager.Entity;
 
 namespace TableManager.Interfaces
 {
@@ -11,14 +12,14 @@ namespace TableManager.Interfaces
     /// </summary>
     public interface ITableSchema
     {
-        /// <summary>
-        /// Obtiene el esquema de la tabla de base de datos
-        /// </summary>
-        void GetTableSchema();
+        #region Properties
+        List<ColumnTableSchema> Columns { get; set; }
+        #endregion
 
-        #region ExecutorInfo
+        #region Schema
         bool VerifyTableExists();
         bool VerifyTableSchema();
+        bool Execute();
         bool UpdateSchema();
         bool TableSchemaGenerator();
         #endregion

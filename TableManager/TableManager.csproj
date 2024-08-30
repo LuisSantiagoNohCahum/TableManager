@@ -48,9 +48,9 @@
     <Compile Include="Entity\ColumnType.cs" />
     <Compile Include="Entity\ColumnAttribute.cs" />
     <Compile Include="Entity\TableSchema.cs" />
-    <Compile Include="Globals\BasicTableFields.cs" />
+    <Compile Include="Globals\BasicTableColumns.cs" />
     <Compile Include="Globals\Global.cs" />
-    <Compile Include="Helpers\SqlConnection.cs" />
+    <Compile Include="Helpers\SqlCustomConnection.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
     <Compile Include="Interfaces\IBusinessTable.cs" />
     <Compile Include="Interfaces\IDataTable.cs" />

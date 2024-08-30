@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TableManager.Globals
 {
-    public class BasicTableFields
+    public class BasicTableColumns
     {
+        public class BasicColumns
+        { 
 
+        }
     }
 }
