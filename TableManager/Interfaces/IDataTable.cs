@@ -82,6 +82,8 @@ namespace TableManager.Interfaces
         /// <param name="UseTransaction">Usar una transacción</param>
         /// <returns>Numero de registros insertados</returns>
         int BulkInsert(DataTable dt, int TimeOut = 999, bool UseTransaction = true);
+
+        //GetByFilter
         #endregion
 
         #region Executor Schema

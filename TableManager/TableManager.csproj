@@ -44,12 +44,14 @@
   <ItemGroup>
     <Compile Include="Business\BusinessTable.cs" />
     <Compile Include="Data\DataTable.cs" />
+    <Compile Include="Entity\EntityTable.cs" />
     <Compile Include="Entity\ColumnTableSchema.cs" />
     <Compile Include="Entity\ColumnType.cs" />
     <Compile Include="Entity\ColumnAttribute.cs" />
     <Compile Include="Entity\TableSchema.cs" />
-    <Compile Include="Globals\BasicTableColumns.cs" />
+    <Compile Include="Globals\DefaultTableColumns.cs" />
     <Compile Include="Globals\Global.cs" />
+    <Compile Include="Helpers\ObjectHelper.cs" />
     <Compile Include="Helpers\SqlCustomConnection.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
     <Compile Include="Interfaces\IBusinessTable.cs" />

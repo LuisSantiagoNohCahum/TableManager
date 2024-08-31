@@ -13,7 +13,7 @@ namespace TableManager.Entity
             /// <summary>
             /// Columna de tipo IDENTITY
             /// </summary>
-            ID,
+            IDENTITY,
 
             /// <summary>
             /// Columna de tipo NVARCHAR

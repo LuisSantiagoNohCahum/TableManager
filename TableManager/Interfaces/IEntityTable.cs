@@ -19,17 +19,22 @@ namespace TableManager.Interfaces
         /// <summary>
         /// Obtiene o establece la fecha de creacion del registro
         /// </summary>
-        DateTime FHA_CREATION { get; set; }
+        DateTime CREATE_DATE { get; set; }
 
         /// <summary>
         /// Obtiene o establece la fecha de actualización del registro
         /// </summary>
-        DateTime FHA_UPDATE { get; set; }
+        DateTime UPDATE_DATE { get; set; }
 
         /// <summary>
         /// Obtiene o establece el nombre del último usuario que modifico el registro
         /// </summary>
         string LAST_USR_MODIFIED { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el id del registro
+        /// </summary>
+        int Id { get; set; }
 
     }
 }

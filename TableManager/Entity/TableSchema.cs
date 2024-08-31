@@ -35,5 +35,10 @@ namespace TableManager.Entity
         {
             return string.Empty;
         }
+
+        public bool Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
