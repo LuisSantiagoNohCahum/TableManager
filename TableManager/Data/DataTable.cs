@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TableManager.Interfaces;
+using TableManager.Globals;
+using TableManager.Helpers;
+using TableManager.Entity;
+using System.Collections;
 
 namespace TableManager.Data
 {
@@ -114,42 +118,47 @@ namespace TableManager.Data
         {
             try
             {
-                List<string> ErrorMessage = new List<string>();
                 if (dr is null) throw new Exception("La fila esta vacia.");
 
+                Entity _objectEntity = Activator.CreateInstance<Entity>();
                 //Contiene las propiedades
-                Entity _entityObject = Activator.CreateInstance<Entity>();
-                List<PropertyInfo> _properties = _entityObject.GetType().GetProperties().ToList();
-
+                List<PropertyInfo> _properties = ObjectHelper.GetProperties<Entity>();
+                //Contiene las constantes por defecto
+                List<FieldInfo> constantsColumns = ObjectHelper.GetConstants<DefaultTableColumns.DefaultColumns>();
                 //Contiene los attributos y nombres de columnas
-                ColumnNames _columnsTable = Activator.CreateInstance<ColumnNames>();
-                List<FieldInfo> constantsColumns = _columnsTable.GetType().GetFields(BindingFlags.Public 
-                    | BindingFlags.Instance 
-                    | BindingFlags.Static 
-                    | BindingFlags.FlattenHierarchy)
-                    .Where(x => !x.IsInitOnly & x.IsLiteral).ToList();
-
-                Globals.DefaultTableColumns.DefaultColumns _columnsDefault = Activator.CreateInstance<Globals.DefaultTableColumns.DefaultColumns>();
+                constantsColumns.AddRange(ObjectHelper.GetConstants<ColumnNames>());
 
                 foreach (PropertyInfo property in _properties)
                 {
-                    foreach (FieldInfo constant in constantsColumns)
+                    //verificar si una propiedad hace match con una constante
+                    if (!constantsColumns.Any(x => x.Name.Equals(property.Name, StringComparison.OrdinalIgnoreCase)))
                     {
-                        if (!property.Name.Equals(constant.Name, StringComparison.OrdinalIgnoreCase))
-                            ErrorMessage.Add($"La propiedad {constant.Name} de la entidad {typeof(Entity).Name} no tiene declarada una constante en la clase de {typeof(ColumnNames).Name} .");
-                            continue;
-
+                        throw new Exception($"La propiedad {property.Name} de la entidad {typeof(Entity).Name} no tiene declarada una constante en la clase {typeof(ColumnNames).Name} con el mismo nombre.");
                     }
+
+                    FieldInfo constant = constantsColumns.Find(x => x.Name.Equals(property.Name, StringComparison.OrdinalIgnoreCase));
+
+                    if (constant is default(FieldInfo))
+                        throw new Exception($"No se encontro la constante [{property.Name}]");
+
+                    ColumnAttribute customAttribute = Helpers.ObjectHelper.GetCustomAttribute(constant);
+                    int indexColumn = dr.Table.Columns.IndexOf(customAttribute.ColumnName);
+
+                    if (indexColumn == -1) 
+                        throw new Exception($"El esquema de la tabla no incluye la columna [{customAttribute.ColumnName}] actualmente. Ejecute el Verificador de esquemas.");
+
+                    PropertyInfo propertyToSet = _objectEntity.GetType().GetProperty(property.Name);
+
+                    if (dr[customAttribute.ColumnName] != System.DBNull.Value)
+                        propertyToSet.SetValue(_objectEntity, dr[customAttribute.ColumnName], null);
                 }
 
+                return _objectEntity;
             }
             catch (Exception ex)
             {
                 throw new Exception($"{this.GetType().Name}:::{System.Reflection.MethodBase.GetCurrentMethod()}: {ex.Message}");
             }
-            Entity eobject = Activator.CreateInstance<Entity>();
-
-            return eobject;
         }
 
         #endregion
